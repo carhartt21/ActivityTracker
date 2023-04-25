@@ -43,7 +43,13 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
     TimeOfDay? selectedTime;
     TimeOfDay initialTime = notTime;
     selectedTime =
-        await showTimePicker(context: context, initialTime: initialTime);
+        await showTimePicker(context: context, initialTime: initialTime, initialEntryMode: TimePickerEntryMode.inputOnly, builder: (context, childWidget) {
+          return MediaQuery(
+              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true), 
+              child: childWidget ?? Container()
+              );
+             },
+            );
     if (selectedTime != null) {
       setState(() {
         notTime = selectedTime!;
