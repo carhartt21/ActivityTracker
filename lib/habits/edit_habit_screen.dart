@@ -4,11 +4,11 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:habo/constants.dart';
-import 'package:habo/habits/habits_manager.dart';
-import 'package:habo/model/habit_data.dart';
-import 'package:habo/navigation/routes.dart';
-import 'package:habo/widgets/text_container.dart';
+import 'package:activity_tracker/constants.dart';
+import 'package:activity_tracker/habits/habits_manager.dart';
+import 'package:activity_tracker/model/habit_data.dart';
+import 'package:activity_tracker/navigation/routes.dart';
+import 'package:activity_tracker/widgets/text_container.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_spinbox/flutter_spinbox.dart';
 
@@ -148,7 +148,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
                 Icons.delete,
                 semanticLabel: 'Delete',
               ),
-              color: HaboColors.red,
+              color: Activity_TrackerColors.red,
               tooltip: 'Delete',
               onPressed: () {
                 Navigator.of(context).pop();

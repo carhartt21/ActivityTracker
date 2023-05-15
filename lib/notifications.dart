@@ -1,24 +1,24 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:habo/constants.dart';
+import 'package:activity_tracker/constants.dart';
 
 void initializeNotifications() {
   AwesomeNotifications().initialize(
     'resource://raw/res_app_icon',
     [
       NotificationChannel(
-          channelKey: 'app_notifications_habo',
+          channelKey: 'app_notifications_activity_tracker',
           channelName: 'App notifications',
           channelDescription:
               'Notification channel for application notifications',
-          defaultColor: HaboColors.primary,
+          defaultColor: Activity_TrackerColors.primary,
           importance: NotificationImportance.Max,
           criticalAlerts: true),
       NotificationChannel(
-          channelKey: 'habit_notifications_habo',
+          channelKey: 'habit_notifications_activity_tracker',
           channelName: 'Habit notifications',
           channelDescription: 'Notification channel for habit notifications',
-          defaultColor: HaboColors.primary,
+          defaultColor: Activity_TrackerColors.primary,
           importance: NotificationImportance.Max,
           criticalAlerts: true)
     ],
@@ -38,21 +38,21 @@ void resetAppNotificationIfMissing(TimeOfDay timeOfDay) async {
 }
 
 void setAppNotification(TimeOfDay timeOfDay) async {
-  _setupDailyNotification(0, timeOfDay, 'Habo',
-      'Do not forget to check your habits.', 'app_notifications_habo');
+  _setupDailyNotification(0, timeOfDay, 'Activity_Tracker',
+      'Do not forget to check your habits.', 'app_notifications_activity_tracker');
 }
 
 void setHabitNotification(
     int id, TimeOfDay timeOfDay, String title, String desc) {
   _setupDailyNotification(
-      id, timeOfDay, title, desc, 'habit_notifications_habo');
+      id, timeOfDay, title, desc, 'habit_notifications_activity_tracker');
 }
 
 void setHabitNotifications(
     int id, List<TimeOfDay> notTimes, title, String desc) {
   for (TimeOfDay notTime in notTimes){
     _setupDailyNotification(
-      id*100+notTime.hour, notTime, title, desc, 'habit_notifications_habo');
+      id*100+notTime.hour, notTime, title, desc, 'habit_notifications_activity_tracker');
   }
 }
 

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.pavlenko.Habo">
+    package="com.chge.Activity_Tracker">
 
     <!-- Check whether Health Connect is installed or not -->
     <queries>
@@ -30,7 +30,7 @@
     </queries>
 
    <application
-        android:label="Habo"
+        android:label="Activity_Tracker"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

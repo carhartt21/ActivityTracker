@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:habo/constants.dart';
-import 'package:habo/model/settings_data.dart';
-import 'package:habo/notifications.dart';
-import 'package:habo/themes.dart';
+import 'package:activity_tracker/constants.dart';
+import 'package:activity_tracker/model/settings_data.dart';
+import 'package:activity_tracker/notifications.dart';
+import 'package:activity_tracker/themes.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -55,12 +55,12 @@ class SettingsManager extends ChangeNotifier {
 
   void saveData() async {
     final SharedPreferences prefs = await _prefs;
-    prefs.setString('habo_settings', jsonEncode(_settingsData));
+    prefs.setString('activity_tracker_settings', jsonEncode(_settingsData));
   }
 
   Future<void> loadData() async {
     final SharedPreferences prefs = await _prefs;
-    String? json = prefs.getString('habo_settings');
+    String? json = prefs.getString('activity_tracker_settings');
     if (json != null) {
       _settingsData = SettingsData.fromJson(jsonDecode(json));
     }
@@ -68,17 +68,17 @@ class SettingsManager extends ChangeNotifier {
 
   ThemeData get getDark {
     if (_settingsData.theme != Themes.light) {
-      return HaboTheme.darkTheme;
+      return Activity_TrackerTheme.darkTheme;
     } else {
-      return HaboTheme.lightTheme;
+      return Activity_TrackerTheme.lightTheme;
     }
   }
 
   ThemeData get getLight {
     if (_settingsData.theme != Themes.dark) {
-      return HaboTheme.lightTheme;
+      return Activity_TrackerTheme.lightTheme;
     } else {
-      return HaboTheme.darkTheme;
+      return Activity_TrackerTheme.darkTheme;
     }
   }
 

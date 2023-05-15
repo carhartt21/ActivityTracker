@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habo/settings/settings_manager.dart';
+import 'package:activity_tracker/settings/settings_manager.dart';
 import 'package:provider/provider.dart';
 
 class CalendarHeader extends StatelessWidget {

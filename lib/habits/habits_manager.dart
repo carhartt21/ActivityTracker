@@ -3,18 +3,18 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
-import 'package:habo/constants.dart';
-import 'package:habo/habits/habit.dart';
-import 'package:habo/model/backup.dart';
-import 'package:habo/model/habit_data.dart';
-import 'package:habo/model/habo_model.dart';
-import 'package:habo/notifications.dart';
-import 'package:habo/statistics/statistics.dart';
+import 'package:activity_tracker/constants.dart';
+import 'package:activity_tracker/habits/habit.dart';
+import 'package:activity_tracker/model/backup.dart';
+import 'package:activity_tracker/model/habit_data.dart';
+import 'package:activity_tracker/model/activity_tracker_model.dart';
+import 'package:activity_tracker/notifications.dart';
+import 'package:activity_tracker/statistics/statistics.dart';
 import 'package:health/health.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class HabitsManager extends ChangeNotifier {
-  final HaboModel _haboModel = HaboModel();
+  final ActivityTrackerModel _activityTrackerModel = ActivityTrackerModel();
   final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
       GlobalKey<ScaffoldMessengerState>();
 
@@ -47,8 +47,8 @@ class HabitsManager extends ChangeNotifier {
   }
 
   initModel() async {
-    await _haboModel.initDatabase();
-    allHabits = await _haboModel.getAllHabits();
+    await _activityTrackerModel.initDatabase();
+    allHabits = await _activityTrackerModel.getAllHabits();
     _isInitialized = true;
     notifyListeners();
   }
@@ -89,7 +89,7 @@ class HabitsManager extends ChangeNotifier {
       jsonDecode(json).forEach((element) {
         habits.add(Habit.fromJson(element));
       });
-      await _haboModel.useBackup(habits);
+      await _activityTrackerModel.useBackup(habits);
       removeNotifications(allHabits);
       allHabits = habits;
       resetNotifications(allHabits);
@@ -155,7 +155,7 @@ class HabitsManager extends ChangeNotifier {
     for (var element in habits) {
       if (element.habitData.notification) {
         var data = element.habitData;
-        setHabitNotifications(data.id!, data.notTimes, 'Habo', data.title);
+        setHabitNotifications(data.id!, data.notTimes, 'Activity_Tracker', data.title);
       }
     }
   }
@@ -173,7 +173,7 @@ class HabitsManager extends ChangeNotifier {
         duration: const Duration(seconds: 3),
         content: Text(message),
         behavior: SnackBarBehavior.floating,
-        backgroundColor: HaboColors.red,
+        backgroundColor: Activity_TrackerColors.red,
       ),
     );
   }
@@ -197,20 +197,20 @@ class HabitsManager extends ChangeNotifier {
     Habit moved = allHabits.removeAt(oldIndex);
     allHabits.insert(newIndex, moved);
     updateOrder();
-    _haboModel.updateOrder(allHabits);
+    _activityTrackerModel.updateOrder(allHabits);
     notifyListeners();
   }
 
   addEvent(int id, DateTime dateTime, List event) {
-    _haboModel.insertEvent(id, dateTime, event);
+    _activityTrackerModel.insertEvent(id, dateTime, event);
   }
 
   deleteEvent(int id, DateTime dateTime) {
-    _haboModel.deleteEvent(id, dateTime);
+    _activityTrackerModel.deleteEvent(id, dateTime);
   }
-  
+
   addEventBatch(int id, Map<DateTime, List> events) {
-    _haboModel.insertEventBatch(id, events);
+    _activityTrackerModel.insertEventBatch(id, events);
   }
 
 
@@ -242,12 +242,12 @@ class HabitsManager extends ChangeNotifier {
         notTimes: notTimes,
       ),
     );
-    _haboModel.insertHabit(newHabit).then(
+    _activityTrackerModel.insertHabit(newHabit).then(
       (id) {
         newHabit.setId = id;
         allHabits.add(newHabit);
         if (notification) {
-          setHabitNotifications(id, notTimes, 'Habo', title);
+          setHabitNotifications(id, notTimes, 'Activity_Tracker', title);
         } else {
           disableHabitNotifications(id, notTimes);
         }
@@ -270,10 +270,10 @@ class HabitsManager extends ChangeNotifier {
     hab.habitData.targetGoal = habitData.targetGoal;
     hab.habitData.notification = habitData.notification;    
     hab.habitData.notTimes = habitData.notTimes;
-    _haboModel.editHabit(hab);
+    _activityTrackerModel.editHabit(hab);
     if (habitData.notification) {
       setHabitNotifications(
-          habitData.id!, habitData.notTimes, 'Habo', habitData.title);
+          habitData.id!, habitData.notTimes, 'Activity_Tracker', habitData.title);
     } else {
       disableHabitNotifications(habitData.id!, habitData.notTimes);
     }
@@ -335,7 +335,7 @@ class HabitsManager extends ChangeNotifier {
   Future<void> deleteFromDB() async {
     if (toDelete.isNotEmpty) {
       disableHabitNotification(toDelete.first.habitData.id!);
-      _haboModel.deleteHabit(toDelete.first.habitData.id!);
+      _activityTrackerModel.deleteHabit(toDelete.first.habitData.id!);
       toDelete.removeFirst();
     }
     if (toDelete.isNotEmpty) {

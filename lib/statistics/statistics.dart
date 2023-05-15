@@ -1,7 +1,7 @@
 import 'dart:collection';
 
-import 'package:habo/constants.dart';
-import 'package:habo/habits/habit.dart';
+import 'package:activity_tracker/constants.dart';
+import 'package:activity_tracker/habits/habit.dart';
 
 class StatisticsData {
   String title = "";

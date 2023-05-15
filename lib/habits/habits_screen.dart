@@ -1,13 +1,13 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:habo/constants.dart';
+import 'package:activity_tracker/constants.dart';
 import 'package:provider/provider.dart';
-import 'package:habo/habits/calendar_column.dart';
-import 'package:habo/habits/habits_manager.dart';
-import 'package:habo/settings/settings_manager.dart';
-import 'package:habo/navigation/navigation.dart';
-import 'package:habo/health/health.dart';
+import 'package:activity_tracker/habits/calendar_column.dart';
+import 'package:activity_tracker/habits/habits_manager.dart';
+import 'package:activity_tracker/settings/settings_manager.dart';
+import 'package:activity_tracker/navigation/navigation.dart';
+import 'package:activity_tracker/health/health.dart';
 
 class HabitsScreen extends StatefulWidget {
   static MaterialPage page() {
@@ -127,7 +127,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
       btnOkText: "Allow",
       btnCancelText: "Cancel",
       btnCancelColor: Colors.grey,
-      btnOkColor: HaboColors.primary,
+      btnOkColor: Activity_TrackerColors.primary,
       btnCancelOnPress: () {},
       btnOkOnPress: () {
         AwesomeNotifications()

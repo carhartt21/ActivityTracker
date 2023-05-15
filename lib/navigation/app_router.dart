@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:habo/habits/edit_habit_screen.dart';
-import 'package:habo/habits/habits_manager.dart';
-import 'package:habo/habits/habits_screen.dart';
-import 'package:habo/navigation/app_state_manager.dart';
-import 'package:habo/navigation/routes.dart';
-import 'package:habo/onboarding/onboarding_screen.dart';
-import 'package:habo/settings/settings_manager.dart';
-import 'package:habo/settings/settings_screen.dart';
-import 'package:habo/splash_screen.dart';
-import 'package:habo/statistics/statistics_screen.dart';
+import 'package:activity_tracker/habits/edit_habit_screen.dart';
+import 'package:activity_tracker/habits/habits_manager.dart';
+import 'package:activity_tracker/habits/habits_screen.dart';
+import 'package:activity_tracker/navigation/app_state_manager.dart';
+import 'package:activity_tracker/navigation/routes.dart';
+import 'package:activity_tracker/onboarding/onboarding_screen.dart';
+import 'package:activity_tracker/settings/settings_manager.dart';
+import 'package:activity_tracker/settings/settings_screen.dart';
+import 'package:activity_tracker/splash_screen.dart';
+import 'package:activity_tracker/statistics/statistics_screen.dart';
 
 class AppRouter extends RouterDelegate
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {

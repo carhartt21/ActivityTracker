@@ -2,28 +2,28 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:habo/habits/habits_manager.dart';
-import 'package:habo/navigation/app_router.dart';
-import 'package:habo/navigation/app_state_manager.dart';
-import 'package:habo/notifications.dart';
-import 'package:habo/settings/settings_manager.dart';
+import 'package:activity_tracker/habits/habits_manager.dart';
+import 'package:activity_tracker/navigation/app_router.dart';
+import 'package:activity_tracker/navigation/app_state_manager.dart';
+import 'package:activity_tracker/notifications.dart';
+import 'package:activity_tracker/settings/settings_manager.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   addLicenses();
   runApp(
-    const Habo(),
+    const Activity_Tracker(),
   );
 }
 
-class Habo extends StatefulWidget {
-  const Habo({Key? key}) : super(key: key);
+class Activity_Tracker extends StatefulWidget {
+  const Activity_Tracker({Key? key}) : super(key: key);
 
   @override
-  State<Habo> createState() => _HaboState();
+  State<Activity_Tracker> createState() => _Activity_TrackerState();
 }
 
-class _HaboState extends State<Habo> {
+class _Activity_TrackerState extends State<Activity_Tracker> {
   final _appStateManager = AppStateManager();
   final _settingsManager = SettingsManager();
   final _habitManager = HabitsManager();

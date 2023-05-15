@@ -1,4 +1,4 @@
-name: habo
+name: activity_tracker
 description: Minimalistic habit tracker.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev

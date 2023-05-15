@@ -1,4 +1,4 @@
-# Contributing to Habo
+# Contributing to Activity_Tracker
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
 - Reporting a bug
@@ -22,8 +22,8 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 ## Any contributions you make will be under the GNU General Public License v3.0
 In short, when you submit code changes, your submissions are understood to be under the same [GNU GPL-3.0](https://choosealicense.com/licenses/gpl-3.0/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
-## Report bugs using Github's [issues](https://github.com/xpavle00/Habo/issues)
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/xpavle00/Habo/issues/new); it's that easy!
+## Report bugs using Github's [issues](https://github.com/xpavle00/Activity_Tracker/issues)
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/xpavle00/Activity_Tracker/issues/new); it's that easy!
 
 Before you create a bug report please search both open and closed issues to make sure your bug report is not a duplicate.
 

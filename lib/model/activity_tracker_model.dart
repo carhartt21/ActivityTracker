@@ -2,14 +2,14 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
-import 'package:habo/constants.dart';
-import 'package:habo/habits/habit.dart';
-import 'package:habo/helpers.dart';
-import 'package:habo/model/habit_data.dart';
+import 'package:activity_tracker/constants.dart';
+import 'package:activity_tracker/habits/habit.dart';
+import 'package:activity_tracker/helpers.dart';
+import 'package:activity_tracker/model/habit_data.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-class HaboModel {
+class ActivityTrackerModel {
   late Database db;
 
   Future<void> deleteEvent(int id, DateTime dateTime) async {

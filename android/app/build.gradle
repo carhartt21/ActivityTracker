@@ -49,7 +49,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.pavlenko.Habo"
+        applicationId "com.chge.Activity_Tracker"
         minSdkVersion 26
         compileSdkVersion 33
         targetSdkVersion 33

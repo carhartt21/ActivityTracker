@@ -1,13 +1,13 @@
 // import 'dart:collection';
 
 // import 'package:flutter/material.dart';
-// import 'package:habo/constants.dart';
-// import 'package:habo/habits/habit_header.dart';
-// import 'package:habo/habits/one_hour_button.dart';
-// import 'package:habo/helpers.dart';
-// import 'package:habo/model/habit_data.dart';
-// import 'package:habo/navigation/app_state_manager.dart';
-// import 'package:habo/settings/settings_manager.dart';
+// import 'package:activity_tracker/constants.dart';
+// import 'package:activity_tracker/habits/habit_header.dart';
+// import 'package:activity_tracker/habits/one_hour_button.dart';
+// import 'package:activity_tracker/helpers.dart';
+// import 'package:activity_tracker/model/habit_data.dart';
+// import 'package:activity_tracker/navigation/app_state_manager.dart';
+// import 'package:activity_tracker/settings/settings_manager.dart';
 // import 'package:provider/provider.dart';
 // import 'package:table_calendar/table_calendar.dart';
 
@@ -346,7 +346,7 @@
 //                       width: 8,
 //                       height: 8,
 //                       decoration: const BoxDecoration(
-//                         color: HaboColors.orange,
+//                         color: Activity_TrackerColors.orange,
 //                         shape: BoxShape.circle,
 //                       ),
 //                     ),
