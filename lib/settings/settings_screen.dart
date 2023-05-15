@@ -5,7 +5,7 @@ import 'package:habo/constants.dart';
 import 'package:habo/habits/habits_manager.dart';
 import 'package:habo/navigation/app_state_manager.dart';
 import 'package:habo/navigation/routes.dart';
-import 'package:habo/settings/color_icon.dart';
+// import 'package:habo/settings/color_icon.dart';
 import 'package:habo/settings/settings_manager.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -133,36 +133,36 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         },
                       ),
                     ),
-                    ListTile(
-                      title: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Text("First day of the week"),
-                          SizedBox(width: 5),
-                        ],
-                      ),
-                      trailing: DropdownButton<String>(
-                        alignment: Alignment.center,
-                        items: Provider.of<SettingsManager>(context)
-                            .getWeekStartList
-                            .map((String value) {
-                          return DropdownMenuItem<String>(
-                            alignment: Alignment.center,
-                            value: value,
-                            child: Text(
-                              value,
-                              textAlign: TextAlign.center,
-                            ),
-                          );
-                        }).toList(),
-                        value:
-                            Provider.of<SettingsManager>(context).getWeekStart,
-                        onChanged: (value) {
-                          Provider.of<SettingsManager>(context, listen: false)
-                              .setWeekStart = value!;
-                        },
-                      ),
-                    ),
+                    // ListTile(
+                    //   title: Row(
+                    //     mainAxisSize: MainAxisSize.min,
+                    //     children: const [
+                    //       Text("First day of the week"),
+                    //       SizedBox(width: 5),
+                    //     ],
+                    //   ),
+                    //   trailing: DropdownButton<String>(
+                    //     alignment: Alignment.center,
+                    //     items: Provider.of<SettingsManager>(context)
+                    //         .getWeekStartList
+                    //         .map((String value) {
+                    //       return DropdownMenuItem<String>(
+                    //         alignment: Alignment.center,
+                    //         value: value,
+                    //         child: Text(
+                    //           value,
+                    //           textAlign: TextAlign.center,
+                    //         ),
+                    //       );
+                    //     }).toList(),
+                    //     value:
+                    //         Provider.of<SettingsManager>(context).getWeekStart,
+                    //     onChanged: (value) {
+                    //       Provider.of<SettingsManager>(context, listen: false)
+                    //           .setWeekStart = value!;
+                    //     },
+                    //   ),
+                    // ),
                     ListTile(
                       title: const Text("Notifications"),
                       trailing: Switch(
@@ -198,72 +198,72 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                       ),
                     ),
-                    ListTile(
-                      title: const Text("Sound effects"),
-                      trailing: Switch(
-                        value: Provider.of<SettingsManager>(context)
-                            .getSoundEffects,
-                        onChanged: (value) {
-                          Provider.of<SettingsManager>(context, listen: false)
-                              .setSoundEffects = value;
-                        },
-                      ),
-                    ),
-                    ListTile(
-                      title: const Text("Show month name"),
-                      trailing: Switch(
-                        value: Provider.of<SettingsManager>(context)
-                            .getShowMonthName,
-                        onChanged: (value) {
-                          Provider.of<SettingsManager>(context, listen: false)
-                              .setShowMonthName = value;
-                        },
-                      ),
-                    ),
-                    ListTile(
-                      title: const Text("Set colors"),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ColorIcon(
-                            color: Provider.of<SettingsManager>(context,
-                                    listen: false)
-                                .checkColor,
-                            icon: Icons.check,
-                            defaultColor: HaboColors.primary,
-                            onPicked: (value) {
-                              Provider.of<SettingsManager>(context,
-                                      listen: false)
-                                  .checkColor = value;
-                            },
-                          ),
-                          ColorIcon(
-                            color: Provider.of<SettingsManager>(context,
-                                    listen: false)
-                                .failColor,
-                            icon: Icons.close,
-                            defaultColor: HaboColors.red,
-                            onPicked: (value) {
-                              Provider.of<SettingsManager>(context,
-                                      listen: false)
-                                  .failColor = value;
-                            },
-                          ),
-                          ColorIcon(
-                            color: Provider.of<SettingsManager>(context,
-                                    listen: false)
-                                .skipColor,
-                            icon: Icons.last_page,
-                            defaultColor: HaboColors.skip,
-                            onPicked: (value) {
-                              Provider.of<SettingsManager>(context,
-                                      listen: false)
-                                  .skipColor = value;
-                            },
-                          )
-                        ],
-                      ),
-                    ),
+                    // ListTile(
+                    //   title: const Text("Sound effects"),
+                    //   trailing: Switch(
+                    //     value: Provider.of<SettingsManager>(context)
+                    //         .getSoundEffects,
+                    //     onChanged: (value) {
+                    //       Provider.of<SettingsManager>(context, listen: false)
+                    //           .setSoundEffects = value;
+                    //     },
+                    //   ),
+                    // ),
+                    // ListTile(
+                    //   title: const Text("Show month name"),
+                    //   trailing: Switch(
+                    //     value: Provider.of<SettingsManager>(context)
+                    //         .getShowMonthName,
+                    //     onChanged: (value) {
+                    //       Provider.of<SettingsManager>(context, listen: false)
+                    //           .setShowMonthName = value;
+                    //     },
+                    //   ),
+                    // ),
+                    // ListTile(
+                    //   title: const Text("Set colors"),
+                    //   trailing: Row(
+                    //     mainAxisSize: MainAxisSize.min,
+                    //     children: [
+                    //       ColorIcon(
+                    //         color: Provider.of<SettingsManager>(context,
+                    //                 listen: false)
+                    //             .checkColor,
+                    //         icon: Icons.check,
+                    //         defaultColor: HaboColors.primary,
+                    //         onPicked: (value) {
+                    //           Provider.of<SettingsManager>(context,
+                    //                   listen: false)
+                    //               .checkColor = value;
+                    //         },
+                    //       ),
+                    //       ColorIcon(
+                    //         color: Provider.of<SettingsManager>(context,
+                    //                 listen: false)
+                    //             .failColor,
+                    //         icon: Icons.close,
+                    //         defaultColor: HaboColors.red,
+                    //         onPicked: (value) {
+                    //           Provider.of<SettingsManager>(context,
+                    //                   listen: false)
+                    //               .failColor = value;
+                    //         },
+                    //       ),
+                    //       ColorIcon(
+                    //         color: Provider.of<SettingsManager>(context,
+                    //                 listen: false)
+                    //             .skipColor,
+                    //         icon: Icons.last_page,
+                    //         defaultColor: HaboColors.skip,
+                    //         onPicked: (value) {
+                    //           Provider.of<SettingsManager>(context,
+                    //                   listen: false)
+                    //               .skipColor = value;
+                    //         },
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
                     ListTile(
                       title: const Text("Backup"),
                       trailing: Row(

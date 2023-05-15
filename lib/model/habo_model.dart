@@ -93,8 +93,9 @@ class HaboModel {
           (events) {
             for (var event in events) {
               eventsMap[DateTime.parse(event["dateTime"] as String)] = [
-                DayType.values[event["dayType"] as int],
-                event["comment"]
+                TaskStatus.values[event["taskStatus"] as int],
+                event["burnedCalories"] as int,
+                event["steps"] as int 
               ];
             }
             result.add(
@@ -103,18 +104,16 @@ class HaboModel {
                   id: id,
                   position: hab["position"],
                   title: hab["title"],
-                  twoDayRule: hab["twoDayRule"] == 0 ? false : true,
-                  cue: hab["cue"] ?? "",
+                  hourly: hab["hourly"] == 0 ? false : true,               
+                  calTarget: hab["calories"] ?? 0,
                   routine: hab["routine"] ?? "",
-                  reward: hab["reward"] ?? "",
-                  showReward: hab["showReward"] == 0 ? false : true,
-                  advanced: hab["advanced"] == 0 ? false : true,
+                  stepsTarget: hab["steps"] ?? 0,
+                  stepsEnabled: hab["stepsEnabled"] == 0 ? false : true,
+                  calEnabled: hab["caloriesEnabled"] == 0 ? false : true,
+                  targetGoal: hab["targetGoal"] ?? 0,
                   notification: hab["notification"] == 0 ? false : true,
-                  notTime: parseTimeOfDay(hab["notTime"]),
+                  notTimes: parseNotificationTimes(hab["notTimes"]),
                   events: eventsMap,
-                  sanction: hab["sanction"] ?? "",
-                  showSanction: (hab["showSanction"] ?? 0) == 0 ? false : true,
-                  accountant: hab["accountant"] ?? "",
                 ),
               ),
             );
@@ -125,23 +124,24 @@ class HaboModel {
     return result;
   }
 
-  void _updateTableEventsV1toV2(Batch batch) {
-    batch.execute('ALTER TABLE Events ADD comment TEXT DEFAULT ""');
-  }
+  // void _updateTableEventsV1toV2(Batch batch) {
+  //   batch.execute('ALTER TABLE Events ADD comment TEXT DEFAULT ""');
+  // }
 
-  void _updateTableHabitsV2toV3(Batch batch) {
-    batch.execute('ALTER TABLE habits ADD sanction TEXT DEFAULT "" NOT NULL');
-    batch.execute('ALTER TABLE habits ADD showSanction INTEGER DEFAULT 0 NOT NULL');
-    batch.execute('ALTER TABLE habits ADD accountant TEXT DEFAULT "" NOT NULL');
-  }
+  // void _updateTableHabitsV2toV3(Batch batch) {
+  //   batch.execute('ALTER TABLE habits ADD sanction TEXT DEFAULT "" NOT NULL');
+  //   batch.execute('ALTER TABLE habits ADD showSanction INTEGER DEFAULT 0 NOT NULL');
+  //   batch.execute('ALTER TABLE habits ADD accountant TEXT DEFAULT "" NOT NULL');
+  // }
 
   void _createTableEventsV3(Batch batch) {
     batch.execute('DROP TABLE IF EXISTS events');
     batch.execute('''CREATE TABLE events (
     id INTEGER,
     dateTime TEXT,
-    dayType INTEGER,
-    comment TEXT,
+    taskStatus INTEGER,
+    burnedCalories INTEGER,
+    steps INTEGER,
     PRIMARY KEY(id, dateTime),
     FOREIGN KEY (id) REFERENCES habits(id) ON DELETE CASCADE
     )''');
@@ -153,17 +153,15 @@ class HaboModel {
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     position INTEGER,
     title TEXT,
-    twoDayRule INTEGER,
-    cue TEXT,
-    routine TEXT,
-    reward TEXT,
-    showReward INTEGER,
-    advanced INTEGER,
+    hourly INTEGER,
+    routine TEXT, 
+    calEnabled INTEGER,
+    calTarget INTEGER,
+    stepsEnabled INTEGER,
+    stepsTarget INTEGER,
+    targetGoal INTEGER,
     notification INTEGER,
-    notTime TEXT,
-    sanction TEXT,
-    showSanction INTEGER,
-    accountant TEXT
+    notTimes TEXT
     )''');
   }
 
@@ -177,25 +175,25 @@ class HaboModel {
       print(databasesPath);
     }
     db = await openDatabase(
-      join(await getDatabasesPath(), 'habo_db0.db'),
-      version: 3,
+      join(await getDatabasesPath(), 'activity_tracker_db3.db'),
+      version: 2,
       onCreate: (db, version) {
         var batch = db.batch();
         _createTableHabitsV3(batch);
         _createTableEventsV3(batch);
         batch.commit();
       },
-      onUpgrade: (db, oldVersion, newVersion) {
-        var batch = db.batch();
-        if (oldVersion == 1) {
-          _updateTableEventsV1toV2(batch);
-          _updateTableHabitsV2toV3(batch);
-        }
-        if (oldVersion == 2) {
-          _updateTableHabitsV2toV3(batch);
-        }
-        batch.commit();
-      },
+      // onUpgrade: (db, oldVersion, newVersion) {
+      //   var batch = db.batch();
+      //   if (oldVersion == 1) {
+      //     _updateTableEventsV1toV2(batch);
+      //     _updateTableHabitsV2toV3(batch);
+      //   }
+      //   if (oldVersion == 2) {
+      //     _updateTableHabitsV2toV3(batch);
+      //   }
+      //   batch.commit();
+      // },
     );
   }
 
@@ -206,10 +204,37 @@ class HaboModel {
           {
             "id": id,
             "dateTime": date.toString(),
-            "dayType": event[0].index,
-            "comment": event[1],
+            "taskStatus": event[0].index,
+            "burnedCalories": event[1],
+            "steps": event[2],
           },
           conflictAlgorithm: ConflictAlgorithm.replace);
+    } catch (_) {
+      if (kDebugMode) {
+        print(_);
+      }
+    }
+  }
+
+
+  Future<void> insertEventBatch(int id, Map<DateTime, List> events) async {
+    try {
+      Batch batch = db.batch();
+      for (DateTime date in events.keys){
+        debugPrint("key: ${date.toString()} values: ${events[date]}");
+        batch.insert(
+          "events",
+          {
+            "id": id,
+            "dateTime": date.toString(),
+            "taskStatus": events[date]![0].index,
+            "burnedCalories": events[date]![1],
+            "steps": events[date]![2],
+          },
+          conflictAlgorithm: ConflictAlgorithm.replace
+        );
+      }
+      batch.commit(noResult: true);
     } catch (_) {
       if (kDebugMode) {
         print(_);
@@ -247,3 +272,4 @@ class HaboModel {
     }
   }
 }
+

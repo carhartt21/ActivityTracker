@@ -67,7 +67,7 @@ class _HaboState extends State<Habo> {
       ],
       child: Consumer<SettingsManager>(builder: (context, counter, _) {
         return MaterialApp(
-          title: 'Habo',
+          title: 'ActivityTracker',
           scaffoldMessengerKey:
               Provider.of<HabitsManager>(context).getScaffoldKey,
           theme: Provider.of<SettingsManager>(context).getLight,

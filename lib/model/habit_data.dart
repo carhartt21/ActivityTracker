@@ -7,18 +7,16 @@ class HabitData {
     this.id,
     required this.position,
     required this.title,
-    required this.twoDayRule,
-    required this.cue,
-    required this.routine,
-    required this.reward,
-    required this.showReward,
-    required this.advanced,
     required this.notification,
-    required this.notTime,
+    required this.notTimes,
+    required this.routine,
     required this.events,
-    required this.sanction,
-    required this.showSanction,
-    required this.accountant,
+    required this.hourly,
+    required this.calEnabled,
+    required this.calTarget,
+    required this.targetGoal,
+    required this.stepsEnabled,
+    required this.stepsTarget,
   });
 
   SplayTreeMap<DateTime, List> events;
@@ -26,15 +24,13 @@ class HabitData {
   int? id;
   int position;
   String title;
-  bool twoDayRule;
-  String cue;
+  bool calEnabled;
+  int calTarget;
+  int targetGoal;
+  bool stepsEnabled;
+  int stepsTarget;
   String routine;
-  String reward;
-  bool showReward;
-  bool advanced;
+  bool hourly;
   bool notification;
-  TimeOfDay notTime;
-  String sanction;
-  bool showSanction;
-  String accountant;
+  List<TimeOfDay> notTimes;
 }

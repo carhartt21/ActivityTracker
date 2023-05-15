@@ -5,7 +5,6 @@ import 'package:habo/constants.dart';
 import 'package:habo/model/settings_data.dart';
 import 'package:habo/notifications.dart';
 import 'package:habo/themes.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,21 +13,21 @@ class SettingsManager extends ChangeNotifier {
   SettingsData _settingsData = SettingsData();
   bool _isInitialized = false;
 
-  final _checkPlayer = AudioPlayer();
-  final _clickPlayer = AudioPlayer();
+  // final _checkPlayer = AudioPlayer();
+  // final _clickPlayer = AudioPlayer();
 
   void initialize() async {
     await loadData();
     _isInitialized = true;
     notifyListeners();
-    _checkPlayer.setAsset('assets/sounds/check.wav');
-    _clickPlayer.setAsset('assets/sounds/click.wav');
+    // _checkPlayer.setAsset('assets/sounds/check.wav');
+    // _clickPlayer.setAsset('assets/sounds/click.wav');
   }
 
   @override
   void dispose() {
-    _checkPlayer.dispose();
-    _clickPlayer.dispose();
+    // _checkPlayer.dispose();
+    // _clickPlayer.dispose();
     super.dispose();
   }
 
@@ -38,21 +37,21 @@ class SettingsManager extends ChangeNotifier {
     }
   }
 
-  playCheckSound() {
-    if (_settingsData.soundEffects) {
-      _checkPlayer.setClip(
-          start: const Duration(seconds: 0), end: const Duration(seconds: 2));
-      _checkPlayer.play();
-    }
-  }
+  // playCheckSound() {
+  //   if (_settingsData.soundEffects) {
+  //     _checkPlayer.setClip(
+  //         start: const Duration(seconds: 0), end: const Duration(seconds: 2));
+  //     _checkPlayer.play();
+  //   }
+  // }
 
-  playClickSound() {
-    if (_settingsData.soundEffects) {
-      _clickPlayer.setClip(
-          start: const Duration(seconds: 0), end: const Duration(seconds: 2));
-      _clickPlayer.play();
-    }
-  }
+  // playClickSound() {
+  //   if (_settingsData.soundEffects) {
+  //     _clickPlayer.setClip(
+  //         start: const Duration(seconds: 0), end: const Duration(seconds: 2));
+  //     _clickPlayer.play();
+  //   }
+  // }
 
   void saveData() async {
     final SharedPreferences prefs = await _prefs;

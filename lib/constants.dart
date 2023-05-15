@@ -18,7 +18,7 @@ List<String> months = [
 
 enum Themes { device, light, dark }
 
-enum DayType { clear, check, fail, skip }
+enum TaskStatus { clear, check, fail, skip }
 
 class HaboColors {
   static const Color primary = Color(0xFF09BF30);

@@ -10,7 +10,7 @@ class StatisticsData {
   int checks = 0;
   int skips = 0;
   int fails = 0;
-  SplayTreeMap<int, Map<DayType, List<int>>> monthlyCheck = SplayTreeMap();
+  SplayTreeMap<int, Map<TaskStatus, List<int>>> monthlyCheck = SplayTreeMap();
 }
 
 class OverallStatisticsData {
@@ -34,49 +34,39 @@ class Statistics {
       var stat = StatisticsData();
       stat.title = habit.habitData.title;
 
-      bool usingTwoDayRule = false;
+      bool hourly = false;
 
-      var lastDay = habit.habitData.events.firstKey();
+      SplayTreeMap treeMap = SplayTreeMap.from(habit.habitData.events);
+
+      var lastDay = treeMap.firstKey();
 
       habit.habitData.events.forEach(
         (key, value) {
-          if (value[0] != null && value[0] != DayType.clear) {
+          if (value[0] != null && value[0] != TaskStatus.clear) {
             if (key.difference(lastDay!).inDays > 1) {
               stat.actualStreak = 0;
             }
 
             switch (value[0]) {
-              case DayType.check:
+              case TaskStatus.check:
                 stat.checks++;
                 stat.actualStreak++;
                 if (stat.actualStreak > stat.topStreak) {
                   stat.topStreak = stat.actualStreak;
                 }
-                usingTwoDayRule = false;
                 break;
-              case DayType.skip:
+              case TaskStatus.skip:
                 stat.skips++;
-                if (usingTwoDayRule) {
-                  stat.actualStreak = 0;
-                }
                 break;
-              case DayType.fail:
+              case TaskStatus.fail:
                 stat.fails++;
-                if (habit.habitData.twoDayRule) {
-                  if (usingTwoDayRule) {
-                    stat.actualStreak = 0;
-                  } else {
-                    usingTwoDayRule = true;
-                  }
-                } else {
-                  stat.actualStreak = 0;
-                }
+                stat.actualStreak = 0;
                 break;
             }
 
             generateYearIfNull(stat, key.year);
 
-            if (value[0] != DayType.clear) {
+            if (value[0] != TaskStatus.clear) {
               stat.monthlyCheck[key.year]![value[0]]![key.month - 1]++;
             }
 
@@ -97,9 +87,9 @@ class Statistics {
   static generateYearIfNull(StatisticsData stat, int year) {
     if (stat.monthlyCheck[year] == null) {
       stat.monthlyCheck[year] = {
-        DayType.check: List.filled(12, 0),
-        DayType.skip: List.filled(12, 0),
-        DayType.fail: List.filled(12, 0),
+        TaskStatus.check: List.filled(12, 0),
+        TaskStatus.skip: List.filled(12, 0),
+        TaskStatus.fail: List.filled(12, 0),
       };
     }
   }

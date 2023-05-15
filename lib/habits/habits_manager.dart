@@ -10,6 +10,8 @@ import 'package:habo/model/habit_data.dart';
 import 'package:habo/model/habo_model.dart';
 import 'package:habo/notifications.dart';
 import 'package:habo/statistics/statistics.dart';
+import 'package:health/health.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class HabitsManager extends ChangeNotifier {
   final HaboModel _haboModel = HaboModel();
@@ -18,6 +20,18 @@ class HabitsManager extends ChangeNotifier {
 
   late List<Habit> allHabits = [];
   bool _isInitialized = false;
+  int _selectedHour = (-1);
+  int _dailyTarget = 0;
+  final HealthFactory _health = HealthFactory();
+  List<HealthDataPoint> healthData = [];
+  static final List<HealthDataType> healthTypes = [
+    HealthDataType.STEPS,
+    HealthDataType.ACTIVE_ENERGY_BURNED
+  ];
+  final permissions = healthTypes.map((e) => HealthDataAccess.READ_WRITE).toList();
+
+
+
 
   Habit? deletedHabit;
   Queue<Habit> toDelete = Queue();
@@ -85,11 +99,63 @@ class HabitsManager extends ChangeNotifier {
     }
   }
 
+  authorizeHealthAccess() async{
+    await Permission.activityRecognition.request();
+    await Permission.location.request();
+
+    // Check if we have permission
+    bool? hasPermissions =
+        await _health.hasPermissions(healthTypes, permissions: permissions);
+
+    // hasPermissions = false because the hasPermission cannot disclose if WRITE access exists.
+    // Hence, we have to request with WRITE as well.
+    hasPermissions = false;
+
+    bool authorized = false;
+    if (!hasPermissions) {
+      // requesting access to the data types before reading them
+      try {
+        authorized =
+            await _health.requestAuthorization(healthTypes, permissions: permissions);
+      } catch (error) {
+        debugPrint("Exception in authorize: $error");
+      }
+    }
+  }
+
+  loadHealthData() async {
+    try{
+      List<HealthDataPoint> _dataPoints = [];
+      _dataPoints = await _health.getHealthDataFromTypes(DateTime.now().subtract(const Duration(days: 7)), 
+      DateTime.now(), healthTypes);
+      healthData.addAll(_dataPoints);
+      notifyListeners();
+    }
+    catch (e) {
+      showErrorMessage('ERROR: Loading HealthData failed: $e');
+    }
+  }
+
+  void selectHour(int idx) {
+    _selectedHour = idx;
+    notifyListeners();
+  }
+
+  void resetSelectedHour() {
+    _selectedHour = -1;
+    notifyListeners();
+  }
+
+  void resetDailyTarget(int target) {
+    _dailyTarget = target;
+    notifyListeners();
+  }
+
   resetNotifications(List<Habit> habits) {
     for (var element in habits) {
       if (element.habitData.notification) {
         var data = element.habitData;
-        setHabitNotification(data.id!, data.notTime, 'Habo', data.title);
+        setHabitNotifications(data.id!, data.notTimes, 'Habo', data.title);
       }
     }
   }
@@ -116,6 +182,10 @@ class HabitsManager extends ChangeNotifier {
     return allHabits;
   }
 
+  List<HealthDataPoint> get getHealthData {
+    return healthData;
+  }
+
   bool get isInitialized {
     return _isInitialized;
   }
@@ -138,36 +208,38 @@ class HabitsManager extends ChangeNotifier {
   deleteEvent(int id, DateTime dateTime) {
     _haboModel.deleteEvent(id, dateTime);
   }
+  
+  addEventBatch(int id, Map<DateTime, List> events) {
+    _haboModel.insertEventBatch(id, events);
+  }
+
 
   addHabit(
       String title,
-      bool twoDayRule,
-      String cue,
+      bool hourly,
+      bool calEnabled,
+      int calTarget,
+      bool stepsEnabled,
+      int stepsTarget,
+      int targetGoal,
       String routine,
-      String reward,
-      bool showReward,
-      bool advanced,
       bool notification,
-      TimeOfDay notTime,
-      String sanction,
-      bool showSanction,
-      String accountant) {
+      List<TimeOfDay> notTimes) 
+      {
     Habit newHabit = Habit(
       habitData: HabitData(
         position: allHabits.length,
         title: title,
-        twoDayRule: twoDayRule,
-        cue: cue,
+        hourly: hourly,
+        calTarget: calTarget,
         routine: routine,
-        reward: reward,
-        showReward: showReward,
-        advanced: advanced,
+        stepsTarget: stepsTarget,
+        stepsEnabled: stepsEnabled,
+        calEnabled: calEnabled,
+        targetGoal: targetGoal,
         events: SplayTreeMap<DateTime, List>(),
         notification: notification,
-        notTime: notTime,
-        sanction: sanction,
-        showSanction: showSanction,
-        accountant: accountant,
+        notTimes: notTimes,
       ),
     );
     _haboModel.insertHabit(newHabit).then(
@@ -175,9 +247,9 @@ class HabitsManager extends ChangeNotifier {
         newHabit.setId = id;
         allHabits.add(newHabit);
         if (notification) {
-          setHabitNotification(id, notTime, 'Habo', title);
+          setHabitNotifications(id, notTimes, 'Habo', title);
         } else {
-          disableHabitNotification(id);
+          disableHabitNotifications(id, notTimes);
         }
         notifyListeners();
       },
@@ -189,23 +261,21 @@ class HabitsManager extends ChangeNotifier {
     Habit? hab = findHabitById(habitData.id!);
     if (hab == null) return;
     hab.habitData.title = habitData.title;
-    hab.habitData.twoDayRule = habitData.twoDayRule;
-    hab.habitData.cue = habitData.cue;
+    hab.habitData.hourly = habitData.hourly;
+    hab.habitData.stepsTarget = habitData.stepsTarget;
     hab.habitData.routine = habitData.routine;
-    hab.habitData.reward = habitData.reward;
-    hab.habitData.showReward = habitData.showReward;
-    hab.habitData.advanced = habitData.advanced;
-    hab.habitData.notification = habitData.notification;
-    hab.habitData.notTime = habitData.notTime;
-    hab.habitData.sanction = habitData.sanction;
-    hab.habitData.showSanction = habitData.showSanction;
-    hab.habitData.accountant = habitData.accountant;
+    hab.habitData.calTarget = habitData.calTarget;
+    hab.habitData.calEnabled = habitData.calEnabled;
+    hab.habitData.stepsEnabled = habitData.stepsEnabled;
+    hab.habitData.targetGoal = habitData.targetGoal;
+    hab.habitData.notification = habitData.notification;    
+    hab.habitData.notTimes = habitData.notTimes;
     _haboModel.editHabit(hab);
     if (habitData.notification) {
-      setHabitNotification(
-          habitData.id!, habitData.notTime, 'Habo', habitData.title);
+      setHabitNotifications(
+          habitData.id!, habitData.notTimes, 'Habo', habitData.title);
     } else {
-      disableHabitNotification(habitData.id!);
+      disableHabitNotifications(habitData.id!, habitData.notTimes);
     }
     notifyListeners();
   }

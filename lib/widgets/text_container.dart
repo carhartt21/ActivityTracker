@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 class TextContainer extends StatelessWidget {
   const TextContainer(
-      {Key? key, required this.title, required this.hint, required this.label})
+      {Key? key, required this.title, required this.hint, required this.label, this.numbersOnly = false})
       : super(key: key);
 
   final TextEditingController title;
   final String hint;
   final String label;
+  final bool numbersOnly;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,7 @@ class TextContainer extends StatelessWidget {
         autofocus: true,
         maxLines: 1,
         maxLength: 120,
+        keyboardType: numbersOnly? TextInputType.number: TextInputType.text,
         textAlignVertical: TextAlignVertical.bottom,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(11),

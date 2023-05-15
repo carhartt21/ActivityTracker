@@ -7,6 +7,7 @@ import 'package:habo/habits/calendar_column.dart';
 import 'package:habo/habits/habits_manager.dart';
 import 'package:habo/settings/settings_manager.dart';
 import 'package:habo/navigation/navigation.dart';
+import 'package:habo/health/health.dart';
 
 class HabitsScreen extends StatefulWidget {
   static MaterialPage page() {
@@ -45,7 +46,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
         return Scaffold(
           appBar: AppBar(
             title: const Text(
-              "Habo",
+              "ActivityTracker",
               style: TextStyle(fontWeight: FontWeight.w700),
             ),
             backgroundColor: Colors.transparent,
@@ -78,25 +79,31 @@ class _HabitsScreenState extends State<HabitsScreen> {
                       .hideSnackBar();
                 },
               ),
+              const HealthApp(),
             ],
           ),
-          body: const CalendarColumn(), //CalendarColumn(),
+          body: 
+          const CalendarColumn(),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Provider.of<AppStateManager>(context, listen: false)
-                  .goCreateHabit(true);
-              Provider.of<HabitsManager>(context, listen: false).hideSnackBar();
-            },
-            child: const Icon(
-              Icons.add,
-              color: Colors.white,
-              semanticLabel: 'Add',
-              size: 35.0,
+              onPressed: () {
+                Provider.of<AppStateManager>(context, listen: false)
+                    .goCreateHabit(true);
+                Provider.of<HabitsManager>(context, listen: false).hideSnackBar();
+              },
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+                semanticLabel: 'Add',
+                size: 35.0,
             ),
           ),
         );
       },
     );
+  }
+
+  void resetDailyState(){
+    
   }
 
   void showNotificationDialog(BuildContext context) {
@@ -116,7 +123,7 @@ class _HabitsScreenState extends State<HabitsScreen> {
       headerAnimationLoop: false,
       animType: AnimType.bottomSlide,
       title: "Notifications",
-      desc: "Habo needs permission to send notifications to work properly.",
+      desc: "ActivityTracker needs permission to send notifications to work properly.",
       btnOkText: "Allow",
       btnCancelText: "Cancel",
       btnCancelColor: Colors.grey,

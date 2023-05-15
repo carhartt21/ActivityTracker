@@ -8,8 +8,9 @@ import 'package:habo/helpers.dart';
 import 'package:habo/settings/settings_manager.dart';
 import 'package:provider/provider.dart';
 
-class OneDayButton extends StatelessWidget {
-  OneDayButton(
+
+class OneHourButton extends StatelessWidget {
+  OneHourButton(
       {Key? key,
       required date,
       this.color,
@@ -18,7 +19,7 @@ class OneDayButton extends StatelessWidget {
       required this.parent,
       required this.callback,
       required this.event})
-      : date = transformDate(date),
+      : date = transformDateWithHour(date),
         super(key: key);
 
   final int id;
@@ -26,7 +27,7 @@ class OneDayButton extends StatelessWidget {
   final Color? color;
   final Widget? child;
   final HabitState parent;
-  final void Function() callback;
+  final void Function(DateTime) callback;
   final List? event;
 
   @override
@@ -36,9 +37,7 @@ class OneDayButton extends StatelessWidget {
         key: const Key('Date'),
         text: child ??
             Text(
-              date.day.toString(),
-              style:
-                  TextStyle(color: (date.weekday > 5) ? Colors.red[300] : null),
+              date.hour.toString().padLeft(2, '0'),
               textAlign: TextAlign.center,
             ),
       ),
@@ -67,12 +66,19 @@ class OneDayButton extends StatelessWidget {
           semanticLabel: 'Skip',
         ),
       ),
+      // const InButton(
+      //   key: Key('Comment'),
+      //   icon: Icon(
+      //     Icons.chat_bubble_outline,
+      //     semanticLabel: 'Comment',
+      //     color: HaboColors.orange,
+      //   ),
+      // )
     ];
 
     int index = 0;
     int burnedCalories = 0;
     int steps = 0;
-
 
     if (event != null) {
       if (event![0] != 0) {
@@ -100,15 +106,7 @@ class OneDayButton extends StatelessWidget {
             shadowColor: Theme.of(context).shadowColor,
             child: Container(
               alignment: Alignment.center,
-              // child: PopupMenuButton<InButton>(
-              //   itemBuilder: ,)
-              // child: ElevatedButton<InButton>(
-              //   onPressed: () {
-              //     parent.setSelectedDay(date);
-              //   },
-              //   onLongPress: () => _showContextMenu(context),)
               child: DropdownButton<InButton>(
-                
                 iconSize: 0,
                 elevation: 3,
                 alignment: Alignment.center,
@@ -125,7 +123,7 @@ class OneDayButton extends StatelessWidget {
                 ).toList(),
                 value: icons[index],
                 onTap: () {
-                  parent.setSelectedDay(date);
+                  parent.setSelectedHour(date);
                 },
                 onChanged: (value) {
                   if (value != null) {
@@ -136,24 +134,17 @@ class OneDayButton extends StatelessWidget {
                           .addEvent(id, date, [
                         TaskStatus.values[icons
                             .indexWhere((element) => element.key == value.key)],
-                        burnedCalories, steps
+                        burnedCalories,
+                        steps
                       ]);
                       parent.events[date] = [
                         TaskStatus.values[icons
                             .indexWhere((element) => element.key == value.key)],
-                        burnedCalories, steps
+                        burnedCalories,
+                        steps
                       ];
-                      // if (value.key == const Key('Check')) {
-                      //   Provider.of<SettingsManager>(context, listen: false)
-                      //       .playCheckSound();
-                      // } else {
-                      //   Provider.of<SettingsManager>(context, listen: false)
-                      //       .playClickSound();
-                      // }
-                    // } else if (value.key == const Key('Comment')) {
-                    //   showCommentDialog(context, index, comment);
                     }
-                    // callback();
+                    callback(transformDate(date));
                   }
                 },
               ),
@@ -163,45 +154,6 @@ class OneDayButton extends StatelessWidget {
       ),
     );
   }
-
-  // void _showContextMenu(BuildContext context) async {
-  //   final RenderObject? overlay =
-  //       Overlay.of(context)?.context.findRenderObject();
-
-  //   final result = await showMenu(
-  //       context: context,
-  //       position: RelativeRect.fromRect(const Rect.fromLTWH(0, 0, 30, 30)),
-  //       // Show the context menu at the tap location
-
-  //       // set a list of choices for the context menu
-  //       items: [
-  //         const PopupMenuItem(
-  //           value: 'favorites',
-  //           child: Text('Add To Favorites'),
-  //         ),
-  //         const PopupMenuItem(
-  //           value: 'comment',
-  //           child: Text('Write Comment'),
-  //         ),
-  //         const PopupMenuItem(
-  //           value: 'hide',
-  //           child: Text('Hide'),
-  //         ),
-  //       ]);
-
-  //   // Implement the logic for each choice here
-  //   switch (result) {
-  //     case 'favorites':
-  //       debugPrint('Add To Favorites');
-  //       break;
-  //     case 'comment':
-  //       debugPrint('Write Comment');
-  //       break;
-  //     case 'hide':
-  //       debugPrint('Hide');
-  //       break;
-  //   }
-  // }
 
   // showCommentDialog(BuildContext context, int index, String comment) {
   //   TextEditingController commentController =

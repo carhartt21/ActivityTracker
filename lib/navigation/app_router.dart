@@ -84,6 +84,7 @@ class AppRouter extends RouterDelegate
 
     if (route.settings.name == Routes.editHabitPath) {
       appStateManager.goEditHabit(null);
+      HabitsScreen.page();
     }
 
     return false;

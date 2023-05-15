@@ -28,6 +28,7 @@ void initializeNotifications() {
 void resetAppNotificationIfMissing(TimeOfDay timeOfDay) async {
   AwesomeNotifications().listScheduledNotifications().then((notifications) {
     for (var not in notifications) {
+      debugPrint("$not");
       if (not.content?.id == 0) {
         return;
       }
@@ -47,8 +48,22 @@ void setHabitNotification(
       id, timeOfDay, title, desc, 'habit_notifications_habo');
 }
 
+void setHabitNotifications(
+    int id, List<TimeOfDay> notTimes, title, String desc) {
+  for (TimeOfDay notTime in notTimes){
+    _setupDailyNotification(
+      id*100+notTime.hour, notTime, title, desc, 'habit_notifications_habo');
+  }
+}
+
 void disableHabitNotification(int id) {
-  AwesomeNotifications().cancel(id);
+    AwesomeNotifications().cancel(id);
+}
+
+void disableHabitNotifications(int id, List<TimeOfDay> notTimes) {
+  for (TimeOfDay notTime in notTimes){
+    AwesomeNotifications().cancel(id * 100 + notTime.hour);
+  }
 }
 
 void disableAppNotification() {

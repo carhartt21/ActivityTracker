@@ -279,7 +279,7 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
 
     if (widget.data.monthlyCheck.isNotEmpty) {
       for (int i = 0;
-          i < widget.data.monthlyCheck[year]![DayType.check]!.length;
+          i < widget.data.monthlyCheck[year]![TaskStatus.check]!.length;
           ++i) {
         result.add(
           BarChartGroupData(
@@ -287,7 +287,7 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
             barRods: [
               if (showCheck)
                 BarChartRodData(
-                  toY: widget.data.monthlyCheck[year]![DayType.check]![i]
+                  toY: widget.data.monthlyCheck[year]![TaskStatus.check]![i]
                       .toDouble(),
                   color: Provider.of<SettingsManager>(context, listen: false)
                       .checkColor,
@@ -295,7 +295,7 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
                 ),
               if (showSkip)
                 BarChartRodData(
-                  toY: widget.data.monthlyCheck[year]![DayType.skip]![i]
+                  toY: widget.data.monthlyCheck[year]![TaskStatus.skip]![i]
                       .toDouble(),
                   color: Provider.of<SettingsManager>(context, listen: false)
                       .skipColor,
@@ -303,7 +303,7 @@ class _MonthlyGraphState extends State<MonthlyGraph> {
                 ),
               if (showFail)
                 BarChartRodData(
-                  toY: widget.data.monthlyCheck[year]![DayType.fail]![i]
+                  toY: widget.data.monthlyCheck[year]![TaskStatus.fail]![i]
                       .toDouble(),
                   color: Provider.of<SettingsManager>(context, listen: false)
                       .failColor,
