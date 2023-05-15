@@ -32,28 +32,7 @@ class _HealthAppState extends State<HealthApp> {
   HealthDataState _state = HealthDataState.DATA_NOT_FETCHED;
   int _nofSteps = 0;
 
-  // Define the types to get.
-  // NOTE: These are only the ones supported on Androids new API Health Connect.
-  // Both Android's Google Fit and iOS' HealthKit have more types that we support in the enum list [HealthDataType]
-  // Add more - like AUDIOGRAM, HEADACHE_SEVERE etc. to try them.
   static final types = dataTypesAndroid;
-  // Or selected types
-  // static final types = [
-  //   HealthDataType.WEIGHT,
-  //   HealthDataType.STEPS,
-  //   HealthDataType.HEIGHT,
-  //   HealthDataType.BLOOD_GLUCOSE,
-  //   HealthDataType.WORKOUT,
-  //   HealthDataType.BLOOD_PRESSURE_DIASTOLIC,
-  //   HealthDataType.BLOOD_PRESSURE_SYSTOLIC,
-  //   // Uncomment these lines on iOS - only available on iOS
-  //   // HealthDataType.AUDIOGRAM
-  // ];
-
-  // with coresponsing permissions
-  // READ only
-  // final permissions = types.map((e) => HealthDataAccess.READ).toList();
-  // Or READ and WRITE
   final permissions = types.map((e) => HealthDataAccess.READ_WRITE).toList();
 
   // create a HealthFactory for use in the app
@@ -66,7 +45,7 @@ class _HealthAppState extends State<HealthApp> {
     //
     // The location permission is requested for Workouts using the Distance information.
     await Permission.activityRecognition.request();
-    await Permission.location.request();
+    // await Permission.location.request();
 
     // Check if we have permission
     bool? hasPermissions =

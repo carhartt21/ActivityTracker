@@ -287,9 +287,10 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
                       title: const Text("Notifications"),
                       trailing: Switch(
                           value: notification,
-                          onChanged: (value) {
-                            notification = value;
-                            setState(() {});
+                          onChanged: (value) {                      
+                            setState(() {
+                              notification = value;
+                            });
                           }),
                     ),
                     notification ? 
@@ -356,7 +357,7 @@ class _EditHabitScreenState extends State<EditHabitScreen> {
                             Container(
                                 padding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
                                 height: 100,
-                                width: 300,
+                                width: 100,
                                 child: GridView.builder(
                                   // shrinkWrap: true,
                                   physics:

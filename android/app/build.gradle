@@ -49,7 +49,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.chge.Activity_Tracker"
+        applicationId "com.chge.ActivityTracker"
         minSdkVersion 26
         compileSdkVersion 33
         targetSdkVersion 33

@@ -1,5 +1,5 @@
-name: activity_tracker
-description: Minimalistic habit tracker.
+name: ActivityTracker
+description: Activity tracker with hourly notifications and health data.
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
