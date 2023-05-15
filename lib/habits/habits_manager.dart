@@ -3,13 +3,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_file_dialog/flutter_file_dialog.dart';
-import 'package:activity_tracker/constants.dart';
-import 'package:activity_tracker/habits/habit.dart';
-import 'package:activity_tracker/model/backup.dart';
-import 'package:activity_tracker/model/habit_data.dart';
-import 'package:activity_tracker/model/activity_tracker_model.dart';
-import 'package:activity_tracker/notifications.dart';
-import 'package:activity_tracker/statistics/statistics.dart';
+import 'package:ActivityTracker/constants.dart';
+import 'package:ActivityTracker/habits/habit.dart';
+import 'package:ActivityTracker/model/backup.dart';
+import 'package:ActivityTracker/model/habit_data.dart';
+import 'package:ActivityTracker/model/activity_tracker_model.dart';
+import 'package:ActivityTracker/notifications.dart';
+import 'package:ActivityTracker/statistics/statistics.dart';
 import 'package:health/health.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -155,7 +155,7 @@ class HabitsManager extends ChangeNotifier {
     for (var element in habits) {
       if (element.habitData.notification) {
         var data = element.habitData;
-        setHabitNotifications(data.id!, data.notTimes, 'Activity_Tracker', data.title);
+        setHabitNotifications(data.id!, data.notTimes, 'ActivityTracker', data.title);
       }
     }
   }
@@ -173,7 +173,7 @@ class HabitsManager extends ChangeNotifier {
         duration: const Duration(seconds: 3),
         content: Text(message),
         behavior: SnackBarBehavior.floating,
-        backgroundColor: Activity_TrackerColors.red,
+        backgroundColor: ActivityTrackerColors.red,
       ),
     );
   }
@@ -247,7 +247,7 @@ class HabitsManager extends ChangeNotifier {
         newHabit.setId = id;
         allHabits.add(newHabit);
         if (notification) {
-          setHabitNotifications(id, notTimes, 'Activity_Tracker', title);
+          setHabitNotifications(id, notTimes, 'ActivityTracker', title);
         } else {
           disableHabitNotifications(id, notTimes);
         }
@@ -273,7 +273,7 @@ class HabitsManager extends ChangeNotifier {
     _activityTrackerModel.editHabit(hab);
     if (habitData.notification) {
       setHabitNotifications(
-          habitData.id!, habitData.notTimes, 'Activity_Tracker', habitData.title);
+          habitData.id!, habitData.notTimes, 'ActivityTracker', habitData.title);
     } else {
       disableHabitNotifications(habitData.id!, habitData.notTimes);
     }

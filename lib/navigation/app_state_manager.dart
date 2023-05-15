@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:activity_tracker/model/habit_data.dart';
+import 'package:ActivityTracker/model/habit_data.dart';
 
 class AppStateManager extends ChangeNotifier {
   bool _statistics = false;

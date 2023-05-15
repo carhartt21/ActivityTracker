@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:activity_tracker/constants.dart';
-import 'package:activity_tracker/helpers.dart';
+import 'package:ActivityTracker/constants.dart';
+import 'package:ActivityTracker/helpers.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class SettingsData {
@@ -13,9 +13,9 @@ class SettingsData {
   bool soundEffects = true;
   bool showMonthName = true;
   bool seenOnboarding = false;
-  Color checkColor = Activity_TrackerColors.primary;
-  Color failColor = Activity_TrackerColors.red;
-  Color skipColor = Activity_TrackerColors.skip;
+  Color checkColor = ActivityTrackerColors.primary;
+  Color failColor = ActivityTrackerColors.red;
+  Color skipColor = ActivityTrackerColors.skip;
 
   SettingsData();
 
@@ -35,13 +35,13 @@ class SettingsData {
             (json['seenOnboarding'] != null) ? json['seenOnboarding'] : false,
         checkColor = (json['checkColor'] != null)
             ? Color(json['checkColor'])
-            : Activity_TrackerColors.primary,
+            : ActivityTrackerColors.primary,
         failColor = (json['failColor'] != null)
             ? Color(json['failColor'])
-            : Activity_TrackerColors.red,
+            : ActivityTrackerColors.red,
         skipColor = (json['skipColor'] != null)
             ? Color(json['skipColor'])
-            : Activity_TrackerColors.skip;
+            : ActivityTrackerColors.skip;
 
   Map<String, dynamic> toJson() => {
         'theme': theme.index,

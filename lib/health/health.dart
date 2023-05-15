@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:health/health.dart';
-import 'package:activity_tracker/health/util.dart';
+import 'package:ActivityTracker/health/util.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 void main() => runApp(HealthApp());

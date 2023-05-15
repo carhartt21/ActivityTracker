@@ -2,28 +2,28 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:activity_tracker/habits/habits_manager.dart';
-import 'package:activity_tracker/navigation/app_router.dart';
-import 'package:activity_tracker/navigation/app_state_manager.dart';
-import 'package:activity_tracker/notifications.dart';
-import 'package:activity_tracker/settings/settings_manager.dart';
+import 'package:ActivityTracker/habits/habits_manager.dart';
+import 'package:ActivityTracker/navigation/app_router.dart';
+import 'package:ActivityTracker/navigation/app_state_manager.dart';
+import 'package:ActivityTracker/notifications.dart';
+import 'package:ActivityTracker/settings/settings_manager.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   addLicenses();
   runApp(
-    const Activity_Tracker(),
+    const ActivityTracker(),
   );
 }
 
-class Activity_Tracker extends StatefulWidget {
-  const Activity_Tracker({Key? key}) : super(key: key);
+class ActivityTracker extends StatefulWidget {
+  const ActivityTracker({Key? key}) : super(key: key);
 
   @override
-  State<Activity_Tracker> createState() => _Activity_TrackerState();
+  State<ActivityTracker> createState() => _ActivityTrackerState();
 }
 
-class _Activity_TrackerState extends State<Activity_Tracker> {
+class _ActivityTrackerState extends State<ActivityTracker> {
   final _appStateManager = AppStateManager();
   final _settingsManager = SettingsManager();
   final _habitManager = HabitsManager();

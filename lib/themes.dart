@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:activity_tracker/constants.dart';
+import 'package:ActivityTracker/constants.dart';
 
-class Activity_TrackerTheme {
+class ActivityTrackerTheme {
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
@@ -14,7 +14,7 @@ class Activity_TrackerTheme {
       colorScheme: ColorScheme.light(
         primaryContainer: Colors.white,
         secondaryContainer: Colors.grey[100],
-        primary: Activity_TrackerColors.primary,
+        primary: ActivityTrackerColors.primary,
         outline: const Color(0xFF505050),
       ),
       fontFamily: GoogleFonts.nunito().fontFamily,
@@ -42,7 +42,7 @@ class Activity_TrackerTheme {
       colorScheme: const ColorScheme.dark(
         primaryContainer: Color(0xFF505050),
         secondaryContainer: Color(0xFF353535),
-        primary: Activity_TrackerColors.primary,
+        primary: ActivityTrackerColors.primary,
         outline: Colors.grey,
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -76,7 +76,7 @@ Color getSwitchTrackColor(Set<MaterialState> states) {
   }
 
   if (states.contains(MaterialState.selected)) {
-    return Activity_TrackerColors.primary;
+    return ActivityTrackerColors.primary;
   }
 
   return const Color(0xFF353535);

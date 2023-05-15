@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:activity_tracker/constants.dart';
-import 'package:activity_tracker/settings/settings_manager.dart';
+import 'package:ActivityTracker/constants.dart';
+import 'package:ActivityTracker/settings/settings_manager.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -75,7 +75,7 @@ class Onboarding extends StatelessWidget {
                 children: const [
                   Icon(
                     Icons.check,
-                    color: Activity_TrackerColors.primary,
+                    color: ActivityTrackerColors.primary,
                   ),
                   SizedBox(
                     width: 10,
@@ -92,7 +92,7 @@ class Onboarding extends StatelessWidget {
                 children: const [
                   Icon(
                     Icons.close,
-                    color: Activity_TrackerColors.red,
+                    color: ActivityTrackerColors.red,
                   ),
                   SizedBox(
                     width: 10,
@@ -109,7 +109,7 @@ class Onboarding extends StatelessWidget {
                 children: const [
                   Icon(
                     Icons.last_page,
-                    color: Activity_TrackerColors.skip,
+                    color: ActivityTrackerColors.skip,
                   ),
                   SizedBox(
                     width: 10,
@@ -126,7 +126,7 @@ class Onboarding extends StatelessWidget {
                 children: const [
                   Icon(
                     Icons.chat_bubble_outline,
-                    color: Activity_TrackerColors.orange,
+                    color: ActivityTrackerColors.orange,
                   ),
                   SizedBox(
                     width: 10,

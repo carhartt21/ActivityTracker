@@ -1,8 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:activity_tracker/constants.dart';
-import 'package:activity_tracker/settings/settings_manager.dart';
-import 'package:activity_tracker/statistics/statistics.dart';
+import 'package:ActivityTracker/constants.dart';
+import 'package:ActivityTracker/settings/settings_manager.dart';
+import 'package:ActivityTracker/statistics/statistics.dart';
 import 'package:provider/provider.dart';
 
 class MonthlyGraph extends StatefulWidget {

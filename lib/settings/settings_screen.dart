@@ -1,12 +1,12 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:activity_tracker/constants.dart';
-import 'package:activity_tracker/habits/habits_manager.dart';
-import 'package:activity_tracker/navigation/app_state_manager.dart';
-import 'package:activity_tracker/navigation/routes.dart';
-// import 'package:activity_tracker/settings/color_icon.dart';
-import 'package:activity_tracker/settings/settings_manager.dart';
+import 'package:ActivityTracker/constants.dart';
+import 'package:ActivityTracker/habits/habits_manager.dart';
+import 'package:ActivityTracker/navigation/app_state_manager.dart';
+import 'package:ActivityTracker/navigation/routes.dart';
+// import 'package:ActivityTracker/settings/color_icon.dart';
+import 'package:ActivityTracker/settings/settings_manager.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
@@ -76,7 +76,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       btnOkText: "Restore",
       btnCancelText: "Cancel",
       btnCancelColor: Colors.grey,
-      btnOkColor: Activity_TrackerColors.primary,
+      btnOkColor: ActivityTrackerColors.primary,
       btnCancelOnPress: () {},
       btnOkOnPress: () async {
         await Provider.of<HabitsManager>(context, listen: false).loadBackup();
@@ -96,7 +96,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           useDefaultLoading: false,
           overlayWidget: const Center(
             child: CircularProgressIndicator(
-              color: Activity_TrackerColors.primary,
+              color: ActivityTrackerColors.primary,
             ),
           ),
           child: Scaffold(
@@ -230,7 +230,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     //                 listen: false)
                     //             .checkColor,
                     //         icon: Icons.check,
-                    //         defaultColor: Activity_TrackerColors.primary,
+                    //         defaultColor: ActivityTrackerColors.primary,
                     //         onPicked: (value) {
                     //           Provider.of<SettingsManager>(context,
                     //                   listen: false)
@@ -242,7 +242,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     //                 listen: false)
                     //             .failColor,
                     //         icon: Icons.close,
-                    //         defaultColor: Activity_TrackerColors.red,
+                    //         defaultColor: ActivityTrackerColors.red,
                     //         onPicked: (value) {
                     //           Provider.of<SettingsManager>(context,
                     //                   listen: false)
@@ -254,7 +254,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     //                 listen: false)
                     //             .skipColor,
                     //         icon: Icons.last_page,
-                    //         defaultColor: Activity_TrackerColors.skip,
+                    //         defaultColor: ActivityTrackerColors.skip,
                     //         onPicked: (value) {
                     //           Provider.of<SettingsManager>(context,
                     //                   listen: false)
@@ -317,9 +317,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             width: 55,
                             height: 55,
                           ),
-                          applicationName: 'Activity_Tracker',
+                          applicationName: 'ActivityTracker',
                           applicationVersion: _packageInfo.version,
-                          applicationLegalese: '©2022 Activity_Tracker',
+                          applicationLegalese: '©2022 ActivityTracker',
                           children: <Widget>[
                             Padding(
                               padding: const EdgeInsets.only(top: 15),
@@ -335,7 +335,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () async {
                                           final Uri url = Uri.parse(
-                                              'https://activity_tracker.space/terms.html#terms');
+                                              'https://ActivityTracker.space/terms.html#terms');
                                           if (await canLaunchUrl(url)) {
                                             await launchUrl(
                                               url,
@@ -353,7 +353,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () async {
                                           final Uri url = Uri.parse(
-                                              'https://activity_tracker.space/terms.html#privacy');
+                                              'https://ActivityTracker.space/terms.html#privacy');
                                           if (await canLaunchUrl(url)) {
                                             await launchUrl(
                                               url,
@@ -371,7 +371,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                       recognizer: TapGestureRecognizer()
                                         ..onTap = () async {
                                           final Uri url = Uri.parse(
-                                              'https://activity_tracker.space/terms.html#disclaimer');
+                                              'https://ActivityTracker.space/terms.html#disclaimer');
                                           if (await canLaunchUrl(url)) {
                                             await launchUrl(
                                               url,

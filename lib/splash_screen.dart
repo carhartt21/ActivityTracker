@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:activity_tracker/navigation/routes.dart';
+import 'package:ActivityTracker/navigation/routes.dart';
 
 class SplashScreen extends StatefulWidget {
   static MaterialPage page() {
@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
               width: 72,
             ),
             Text(
-              "Activity_Tracker",
+              "ActivityTracker",
               style: Theme.of(context).textTheme.headlineSmall,
             ),
           ],

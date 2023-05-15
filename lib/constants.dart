@@ -20,7 +20,7 @@ enum Themes { device, light, dark }
 
 enum TaskStatus { clear, check, fail, skip }
 
-class Activity_TrackerColors {
+class ActivityTrackerColors {
   static const Color primary = Color(0xFF09BF30);
   static const Color red = Color(0xFFF44336);
   static const Color skip = Color(0xFFFBC02D);

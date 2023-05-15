@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-// import 'package:activity_tracker/habits/calendar_header.dart';
-import 'package:activity_tracker/habits/empty_list_image.dart';
-import 'package:activity_tracker/habits/habit.dart';
-import 'package:activity_tracker/habits/habits_manager.dart';
-import 'package:activity_tracker/habits/one_hour_button.dart';
+// import 'package:ActivityTracker/habits/calendar_header.dart';
+import 'package:ActivityTracker/habits/empty_list_image.dart';
+import 'package:ActivityTracker/habits/habit.dart';
+import 'package:ActivityTracker/habits/habits_manager.dart';
+import 'package:ActivityTracker/habits/one_hour_button.dart';
 import 'package:provider/provider.dart';
 
 class CalendarColumn extends StatelessWidget {

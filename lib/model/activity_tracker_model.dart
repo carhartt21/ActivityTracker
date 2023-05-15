@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
-import 'package:activity_tracker/constants.dart';
-import 'package:activity_tracker/habits/habit.dart';
-import 'package:activity_tracker/helpers.dart';
-import 'package:activity_tracker/model/habit_data.dart';
+import 'package:ActivityTracker/constants.dart';
+import 'package:ActivityTracker/habits/habit.dart';
+import 'package:ActivityTracker/helpers.dart';
+import 'package:ActivityTracker/model/habit_data.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -175,7 +175,7 @@ class ActivityTrackerModel {
       print(databasesPath);
     }
     db = await openDatabase(
-      join(await getDatabasesPath(), 'activity_tracker_db3.db'),
+      join(await getDatabasesPath(), 'ActivityTracker_db3.db'),
       version: 2,
       onCreate: (db, version) {
         var batch = db.batch();

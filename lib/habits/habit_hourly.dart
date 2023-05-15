@@ -1,13 +1,13 @@
 // import 'dart:collection';
 
 // import 'package:flutter/material.dart';
-// import 'package:activity_tracker/constants.dart';
-// import 'package:activity_tracker/habits/habit_header.dart';
-// import 'package:activity_tracker/habits/one_hour_button.dart';
-// import 'package:activity_tracker/helpers.dart';
-// import 'package:activity_tracker/model/habit_data.dart';
-// import 'package:activity_tracker/navigation/app_state_manager.dart';
-// import 'package:activity_tracker/settings/settings_manager.dart';
+// import 'package:ActivityTracker/constants.dart';
+// import 'package:ActivityTracker/habits/habit_header.dart';
+// import 'package:ActivityTracker/habits/one_hour_button.dart';
+// import 'package:ActivityTracker/helpers.dart';
+// import 'package:ActivityTracker/model/habit_data.dart';
+// import 'package:ActivityTracker/navigation/app_state_manager.dart';
+// import 'package:ActivityTracker/settings/settings_manager.dart';
 // import 'package:provider/provider.dart';
 // import 'package:table_calendar/table_calendar.dart';
 
@@ -346,7 +346,7 @@
 //                       width: 8,
 //                       height: 8,
 //                       decoration: const BoxDecoration(
-//                         color: Activity_TrackerColors.orange,
+//                         color: ActivityTrackerColors.orange,
 //                         shape: BoxShape.circle,
 //                       ),
 //                     ),

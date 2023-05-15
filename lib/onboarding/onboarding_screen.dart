@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:activity_tracker/navigation/app_state_manager.dart';
-import 'package:activity_tracker/navigation/routes.dart';
-import 'package:activity_tracker/onboarding/onboarding.dart';
+import 'package:ActivityTracker/navigation/app_state_manager.dart';
+import 'package:ActivityTracker/navigation/routes.dart';
+import 'package:ActivityTracker/onboarding/onboarding.dart';
 import 'package:provider/provider.dart';
 
 class OnboardingScreen extends StatefulWidget {

@@ -1,11 +1,11 @@
 // import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:activity_tracker/constants.dart';
-import 'package:activity_tracker/habits/habit.dart';
-import 'package:activity_tracker/habits/habits_manager.dart';
-import 'package:activity_tracker/habits/in_button.dart';
-import 'package:activity_tracker/helpers.dart';
-import 'package:activity_tracker/settings/settings_manager.dart';
+import 'package:ActivityTracker/constants.dart';
+import 'package:ActivityTracker/habits/habit.dart';
+import 'package:ActivityTracker/habits/habits_manager.dart';
+import 'package:ActivityTracker/habits/in_button.dart';
+import 'package:ActivityTracker/helpers.dart';
+import 'package:ActivityTracker/settings/settings_manager.dart';
 import 'package:provider/provider.dart';
 
 class OneDayButton extends StatelessWidget {
@@ -238,7 +238,7 @@ class OneDayButton extends StatelessWidget {
   //     btnOkText: "Save",
   //     btnCancelText: "Close",
   //     btnCancelColor: Colors.grey,
-  //     btnOkColor: Activity_TrackerColors.primary,
+  //     btnOkColor: ActivityTrackerColors.primary,
   //     btnCancelOnPress: () {},
   //     btnOkOnPress: () {
   //       Provider.of<HabitsManager>(context, listen: false).addEvent(

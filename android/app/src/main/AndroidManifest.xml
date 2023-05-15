@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.chge.Activity_Tracker">
+    package="com.chge.ActivityTracker">
 
     <!-- Check whether Health Connect is installed or not -->
     <queries>

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:activity_tracker/constants.dart';
+import 'package:ActivityTracker/constants.dart';
 import 'package:provider/provider.dart';
-import 'package:activity_tracker/settings/settings_manager.dart';
+import 'package:ActivityTracker/settings/settings_manager.dart';
 
 
 class EventsMarker extends StatelessWidget {
