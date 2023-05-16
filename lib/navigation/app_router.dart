@@ -53,7 +53,7 @@ class AppRouter extends RouterDelegate
         if (appStateManager.getEditHabit != null)
           EditHabitScreen.page(appStateManager.getEditHabit!),
         if (!allInitialized()) SplashScreen.page(),
-      ],
+      ], 
     );
   }
 
@@ -91,5 +91,7 @@ class AppRouter extends RouterDelegate
   }
 
   @override
-  Future<void> setNewRoutePath(configuration) async {}
+  Future<void> setNewRoutePath(configuration) async {
+    notifyListeners();
+  }
 }
