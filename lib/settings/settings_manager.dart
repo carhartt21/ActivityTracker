@@ -110,10 +110,6 @@ class SettingsManager extends ChangeNotifier {
     return _settingsData.showDailyNot;
   }
 
-  bool get getSoundEffects {
-    return _settingsData.soundEffects;
-  }
-
   bool get getShowMonthName {
     return _settingsData.showMonthName;
   }
@@ -165,12 +161,6 @@ class SettingsManager extends ChangeNotifier {
     } else {
       disableAppNotification();
     }
-    saveData();
-    notifyListeners();
-  }
-
-  set setSoundEffects(bool value) {
-    _settingsData.soundEffects = value;
     saveData();
     notifyListeners();
   }
