@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ActivityTracker/constants.dart';
 import 'package:ActivityTracker/habits/habit.dart';
-import 'package:ActivityTracker/helpers.dart';
 import 'package:ActivityTracker/habits/habits_manager.dart';
 import 'package:provider/provider.dart';
 

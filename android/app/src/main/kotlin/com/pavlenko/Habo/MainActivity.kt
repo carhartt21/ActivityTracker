@@ -1,4 +1,4 @@
-package com.chge.Activity_Tracker
+package com.chge.ActivityTracker
 
 import io.flutter.embedding.android.FlutterActivity
 

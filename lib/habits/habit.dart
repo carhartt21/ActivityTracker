@@ -92,7 +92,8 @@ class Habit extends StatefulWidget {
           stepsTarget: json['stepsTarget'],
         );
 
-  static SplayTreeMap<DateTime, List> doEvents(SplayTreeMap<String, dynamic> input) {
+  static SplayTreeMap<DateTime, List> doEvents(
+      SplayTreeMap<String, dynamic> input) {
     SplayTreeMap<DateTime, List> result = SplayTreeMap<DateTime, List>();
     input.forEach((key, value) {
       result[DateTime.parse(key)] = [
@@ -184,7 +185,7 @@ class HabitState extends State<Habit> {
     setSelectedDay(selectedDay);
   }
 
-  setSelectedDay(DateTime selectedDay) async{
+  setSelectedDay(DateTime selectedDay) async {
     await _getEvents(_firstVisibleDay, _lastVisibleDay);
     if (!isSameDay(_selectedDay, selectedDay)) {
       setState(() {
@@ -339,59 +340,56 @@ class HabitState extends State<Habit> {
             FutureBuilder<void>(
                 // future: _getEvents(_firstVisibleDay, _lastVisibleDay),
                 builder: (context, snapshot) {
-                  // if (!snapshot.) {
-                  //   return const
-                  //   Center(
-                  //     child: SizedBox(
-                  //     height: 100.0,
-                  //     width: 100.0,
-                  //     child: Center(child: CircularProgressIndicator()),
-                  //     )
-                  //   );
-                  // }
-                  // var events = snapshot.data!;
-                  return TableCalendar(
-                      focusedDay: _focusedDay,
-                      // selectedColor: Colors.red,
-                      firstDay: DateTime(2000),
-                      lastDay: DateTime.now(),
-                      headerVisible: false,
-                      currentDay: DateTime.now(),
-                      availableCalendarFormats: const {
-                        CalendarFormat.month: 'Month',
-                        CalendarFormat.week: 'Week'
-                      },
-                      selectedDayPredicate: (date) =>
-                          isSameDay(date, _selectedDay),
-                      // calendarStyle: CalendarStyle(
-                      //     todayDecoration: BoxDecoration(
-                      //         borderRadius: BorderRadius.circular(10),
-                      //         border: Border.all(
-                      //             strokeAlign: BorderSide.strokeAlignCenter,
-                      //             width: 8,
-                      //             color: Colors.blue.shade900)
-                      //         // )
-                      //         ), selectedDecoration:
-                      //           BoxDecoration(
-                      //             shape: BoxShape.rectangle,
-                      //             borderRadius: BorderRadius.circular(10),
-                      //             color: Theme.of(context).colorScheme.primaryContainer
-                      //           ),
-                      //           selectedTextStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-
-                      //       ),
-                      // selectedDayPredicate: ((day) => isSameDay(day, _selectedDay)),
-                      eventLoader: _getEventsForDay,
-                      calendarFormat: _calendarFormat,
-                      daysOfWeekVisible: false,
-                      onFormatChanged: _onFormatChanged,
-                      onPageChanged: setSelectedDay,
-                      onDaySelected: _onDaySelected,
-                      startingDayOfWeek: StartingDayOfWeek.monday,
-                      calendarBuilders: (widget.habitData.hourly)
-                          ? hourlyCalendarBuilder(context)
-                          : dailyCalendarBuilder(context));
-                })
+              // if (!snapshot.) {
+              //   return const
+              //   Center(
+              //     child: SizedBox(
+              //     height: 100.0,
+              //     width: 100.0,
+              //     child: Center(child: CircularProgressIndicator()),
+              //     )
+              //   );
+              // }
+              // var events = snapshot.data!;
+              return TableCalendar(
+                  focusedDay: _focusedDay,
+                  // selectedColor: Colors.red,
+                  firstDay: DateTime(2000),
+                  lastDay: DateTime.now(),
+                  headerVisible: false,
+                  currentDay: DateTime.now(),
+                  availableCalendarFormats: const {
+                    CalendarFormat.month: 'Month',
+                    CalendarFormat.week: 'Week'
+                  },
+                  selectedDayPredicate: (date) => isSameDay(date, _selectedDay),
+                  calendarStyle: CalendarStyle(
+                    todayDecoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            strokeAlign: BorderSide.strokeAlignCenter,
+                            width: 8,
+                            color: Colors.blue.shade900)
+                        // )
+                        ),
+                    selectedDecoration: BoxDecoration(
+                        // shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(10),
+                        color: Theme.of(context).colorScheme.primaryContainer),
+                    selectedTextStyle: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  eventLoader: _getEventsForDay,
+                  calendarFormat: _calendarFormat,
+                  daysOfWeekVisible: false,
+                  onFormatChanged: _onFormatChanged,
+                  onPageChanged: setSelectedDay,
+                  onDaySelected: _onDaySelected,
+                  startingDayOfWeek: StartingDayOfWeek.monday,
+                  calendarBuilders: (widget.habitData.hourly)
+                      ? hourlyCalendarBuilder(context)
+                      : dailyCalendarBuilder(context));
+            })
           ],
         ),
       ),
@@ -646,7 +644,6 @@ class HabitState extends State<Habit> {
         }
       }
     }
-    debugPrint("date: $date completed: $completed)");
     return completed;
   }
 
@@ -689,7 +686,6 @@ class HabitState extends State<Habit> {
       }
     }
   }
-  
 
   Future<int> _getHealthData(DateTime date, HealthDataType type) async {
     HealthFactory health = HealthFactory();

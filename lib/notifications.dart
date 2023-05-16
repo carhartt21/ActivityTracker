@@ -28,7 +28,6 @@ void initializeNotifications() {
 void resetAppNotificationIfMissing(TimeOfDay timeOfDay) async {
   AwesomeNotifications().listScheduledNotifications().then((notifications) {
     for (var not in notifications) {
-      debugPrint("$not");
       if (not.content?.id == 0) {
         return;
       }

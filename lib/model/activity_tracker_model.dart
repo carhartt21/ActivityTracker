@@ -221,7 +221,6 @@ class ActivityTrackerModel {
     try {
       Batch batch = db.batch();
       for (DateTime date in events.keys){
-        debugPrint("key: ${date.toString()} values: ${events[date]}");
         batch.insert(
           "events",
           {
